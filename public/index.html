@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Quiz Platform </title>
+  
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <body>
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">Quiz AI </div>
+    <nav>
+      <button onclick="showScreen('screen-home')">Home</button>
+      <button onclick="showScreen('screen-auth')">Login / Register</button>
+      <button onclick="showScreen('screen-dashboard')">Dashboard</button>
+    </nav>
+  </header>
+  <!-- 1. HOME PAGE SCREEN -->
+  <div id="screen-home" class="screen active">
+    <section class="hero-section">
+      <h1>AI-Powered Quiz Platform</h1>
+      <p>Test your knowledge in different categories with live timers and instant AI score breakdowns.</p>
+      
+      <!-- EXPLICIT REQUIREMENT: Start Quiz button with RED color -->
+      <button class="btn-red-start" onclick="showScreen('screen-dashboard')">
+        Start Quiz
+      </button>
+    </section>
+    <section class="about-section">
+      <h2>About Platform</h2>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3> AI Question Generator</h3>
+          <p>Generates targeted multiple-choice questions per difficulty.</p>
+        </div>
+        <div class="about-card">
+          <h3>⏱️ Real-time Timer</h3>
+          
+        </div>
+        <div class="about-card">
+          <h3>📊 Analysis & Weak Subjects</h3>
+          <p>Identifies your weakest topics so you can improve fast.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- 2. LOGIN & REGISTER PAGE SCREEN -->
+  <div id="screen-auth" class="screen">
+    <div class="auth-container">
+      <div class="auth-tabs">
+        <button id="tab-login" class="active" onclick="switchAuthTab('login')">Login</button>
+        <button id="tab-register" onclick="switchAuthTab('register')">Register</button>
+      </div>
+      <!-- Login Form -->
+      <form id="form-login" onsubmit="handleAuthSubmit(event)">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="login-email" placeholder="student@ece.ai" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="login-pass" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-submit">Login</button>
+      </form>
+      <!-- Register Form -->
+      <form id="form-register" style="display: none;" onsubmit="handleAuthSubmit(event)">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="reg-email" placeholder="student@ece.ai" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="reg-pass" placeholder="••••••••" required>
+        </div>
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input type="password" id="reg-conf-pass" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-submit">Register Account</button>
+      </form>
+    </div>
+  </div>
+  <!-- 3. DASHBOARD PAGE SCREEN -->
+  <div id="screen-dashboard" class="screen">
+    <div class="dashboard-container">
+      
+      <div class="welcome-card">
+        <h2 id="welcome-msg">Welcome back👋</h2>
+        <p style="color: #9eabbd;">Choose a quiz topic from your own interest and difficulty level below to begin your test.</p>
+      </div>
+      <h3 style="margin-bottom: 1rem;">1. Select Quiz Category</h3>
+      <div class="category-grid">
+        <div class="category-card selected" onclick="selectCategory('AI & ML', this)">
+          <h4>🤖 AI & Machine Learning</h4>
+          <p style="font-size: 0.8rem; color: #94a3b8;">Neural Networks & LLMs</p>
+        </div>
+        <div class="category-card" onclick="selectCategory('Web Dev', this)">
+          <h4>💻 Web Development</h4>
+          <p style="font-size: 0.8rem; color: #94a3b8;">HTML, CSS & JavaScript</p>
+        </div>
+        <div class="category-card" onclick="selectCategory('Science & Tech', this)">
+          <h4>🔬 Science & Tech</h4>
+          <p style="font-size: 0.8rem; color: #94a3b8;">Physics & Electronics</p>
+        </div>
+        <div class="category-card" onclick="selectCategory('General Knowledge', this)">
+          <h4>🌐 General Knowledge</h4>
+          <p style="font-size: 0.8rem; color: #94a3b8;">World Trivia & Science</p>
+        </div>
+      </div>
+      <div class="selector-box">
+        <h3>2. Select Difficulty & Question Count</h3>
+        <div style="display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1rem;">
+          <div>
+            <label style="font-size: 0.9rem; color: #94a3b8;">Difficulty:</label>
+            <div class="option-pills">
+              <button class="pill-btn" onclick="selectDifficulty('Easy', this)">Easy</button>
+              <button class="pill-btn active" onclick="selectDifficulty('Medium', this)">Medium</button>
+              <button class="pill-btn" onclick="selectDifficulty('Hard', this)">Hard</button>
+            </div>
+          </div>
+          <div>
+            <label style="font-size: 0.9rem; color: #94a3b8;">Number of Questions:</label>
+            <div class="option-pills">
+              <button class="pill-btn active" onclick="selectCount(5, this)">5 Qs</button>
+              <button class="pill-btn" onclick="selectCount(10, this)">10 Qs</button>
+            </div>
+          </div>
+        </div>
+        <button class="btn-red-start" style="width: 100%; margin-top: 1.5rem; text-align: center;" onclick="startQuiz()">
+          Start Quiz Now
+        </button>
+      </div>
+      <!-- Analytics Box -->
+      <div class="analytics-box">
+        <h3>📊 Analytics & Performance Insights</h3>
+        <div style="display: flex; gap: 2rem; margin-top: 1rem;">
+          <div>
+            <span style="color: #94a3b8; font-size: 0.9rem;">Total Quizzes Taken:</span>
+            <h4 id="stat-total-quizzes">2</h4>
+          </div>
+          <div>
+            <span style="color: #94a3b8; font-size: 0.9rem;">Average Score:</span>
+            <h4 id="stat-avg-score">75%</h4>
+          </div>
+          <div>
+            <span style="color: #94a3b8; font-size: 0.9rem;">Weakest Subject:</span>
+            <h4 id="stat-weak-subject" class="weak-tag">Science & Tech (40%)</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 4. QUIZ PAGE SCREEN>
+  <div id="screen-quiz" class="screen quiz-page-container">
+    
+
+    <div class="quiz-header"-->
+      <div>
+        <span style="font-size: 0.8rem; opacity: 0.8;">Active Category</span>
+        <h2 id="quiz-running-category">AI & Machine Learning</h2>
+      </div>
+      <button style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer;" onclick="showScreen('screen-dashboard')">
+        Quit Quiz
+      </button>
+    </div>
+    <div class="progress-bar-container">
+      <div id="quiz-progress-fill" class="progress-bar-fill"></div>
+    </div>
+    <div class="quiz-content">
+      <div class="quiz-info-row">
+        <!-- EXPLICIT REQUIREMENT: Question counter format running question number / total no of question -->
+        <span id="quiz-counter">Question 1/5</span>
+        <span class="timer-badge" id="quiz-timer">⏱️ 30s</span>
+      </div>
+      <div class="question-box">
+        <h3 id="quiz-question-text" class="question-text">
+          What is the primary function of Self-Attention in AI Transformer models?
+        </h3>
+        <div id="quiz-options-container">
+          <button class="option-btn" onclick="selectOption(0, this)">A) Parallel processing of context across input tokens</button>
+          <button class="option-btn" onclick="selectOption(1, this)">B) Sequential recurrence looping</button>
+          <button class="option-btn" onclick="selectOption(2, this)">C) Image convolution filtering</button>
+          <button class="option-btn" onclick="selectOption(3, this)">D) Analog signal sampling</button>
+        </div>
+      </div>
+      <div class="quiz-nav-btns">
+        <button id="btn-prev-q" class="btn-prev" onclick="prevQuestion()" disabled>Previous</button>
+        <button id="btn-next-q" class="btn-next" onclick="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+  <!-- 5. RESULT PAGE SCREEN -->
+  <div id="screen-result" class="screen">
+    <div class="result-container">
+      <h2>🎉 Quiz Results</h2>
+      <p style="color: #94a3b8; margin-top: 0.4rem;">Performance Summary</p>
+      <div class="result-grid">
+        <div class="result-card">
+          <span style="font-size: 0.8rem; color: #94a3b8;">Final Score</span>
+          <h3 id="res-score" style="color: #38bdf8; font-size: 1.8rem;">40 / 50</h3>
+        </div>
+        <div class="result-card">
+          <span style="font-size: 0.8rem; color: #94a3b8;">Percentage</span>
+          <h3 id="res-percentage" style="color: #a855f7; font-size: 1.8rem;">80%</h3>
+        </div>
+        <div class="result-card">
+          <span style="font-size: 0.8rem; color: #94a3b8;">Correct Answers</span>
+          <h3 id="res-correct" style="color: #4ade80; font-size: 1.8rem;">4</h3>
+        </div>
+        <div class="result-card">
+          <span style="font-size: 0.8rem; color: #94a3b8;">Wrong Answers</span>
+          <h3 id="res-wrong" style="color: #f87171; font-size: 1.8rem;">1</h3>
+        </div>
+      </div>
+      <!-- EXPLICIT REQUIREMENT: Restart button -->
+      <button class="btn-restart" onclick="restartQuiz()">
+        🔄 Restart Quiz
+      </button>
+      <br>
+      <button style="background: none; border: none; color: #94a3b8; margin-top: 1rem; cursor: pointer;" onclick="showScreen('screen-dashboard')">
+        Back to Dashboard
+      </button>
+    </div>
+  </div>
+  <footer>
+    <p>QuizAI Platform • Built for ECE-AI Department Submission</p>
+  </footer>
+
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
+
+
+ 

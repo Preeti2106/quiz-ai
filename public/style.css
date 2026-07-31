@@ -1,0 +1,348 @@
+ * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-color: #0f172a;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+    /* Screen Management Utility */
+    .screen {
+      display: none;
+    }
+    .screen.active {
+      display: block;
+    }
+    /* Navigation Bar */
+    header {
+      background-color: #1e293b;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #334155;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: #cbd5e1;
+      font-size: 1rem;
+      margin-left: 1.5rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    nav button:hover {
+      color: #38bdf8;
+    }
+    /* 1. HOME PAGE STYLING */
+    .hero-section {
+      text-align: center;
+      padding: 4rem 1.5rem;
+      background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    }
+    .hero-section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #f8fafc;
+    }
+    .hero-section p {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto 2rem auto;
+    }
+    /* EXPLICIT REQUIREMENT: Start Quiz button with RED color */
+    .btn-red-start {
+      background-color: #ef4444;
+      color: #ffffff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 0.9rem 2.5rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .btn-red-start:hover {
+      background-color: #dc2626;
+      transform: scale(1.05);
+    }
+    .about-section {
+      padding: 3rem 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .about-card {
+      background-color: #1e293b;
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid #334155;
+    }
+    /* 2. LOGIN & REGISTER PAGE STYLING */
+    .auth-container {
+      max-width: 400px;
+      margin: 3rem auto;
+      background-color: #1e293b;
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid #334155;
+    }
+    .auth-tabs {
+      display: flex;
+      margin-bottom: 1.5rem;
+    }
+    .auth-tabs button {
+      flex: 1;
+      padding: 0.6rem;
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+    }
+    .auth-tabs button.active {
+      color: #38bdf8;
+      border-bottom-color: #38bdf8;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #ffffff;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #0284c7;
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    /* 3. DASHBOARD PAGE STYLING */
+    .dashboard-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .welcome-card {
+      background-color: #1e293b;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .category-card {
+      background-color: #1e293b;
+      padding: 1.2rem;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      text-align: center;
+    }
+    .category-card.selected {
+      border-color: #38bdf8;
+      background-color: #0f172a;
+    }
+    .selector-box {
+      background-color: #1e293b;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+    .option-pills {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+    .pill-btn {
+      padding: 0.5rem 1rem;
+      background-color: #0f172a;
+      border: 1px solid #334155;
+      color: #ffffff;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .pill-btn.active {
+      background-color: #0284c7;
+      border-color: #0284c7;
+    }
+    /* Analytics Card */
+    .analytics-box {
+      background-color: #1e293b;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+    }
+    .weak-tag {
+      color: #ef4444;
+      font-weight: 600;
+    }
+    /* 4. QUIZ PAGE STYLING
+       EXPLICIT REQUIREMENT: Blue Category Header & White Page Background */
+    .quiz-page-container {
+      background-color: #ffffff !important; /* EXPLICIT WHITE BACKGROUND */
+      color: #1e293b !important;
+      min-height: 100vh;
+    }
+    /* EXPLICIT REQUIREMENT: Blue background header for running category */
+    .quiz-blue-header {
+      background-color: #1d4ed8 !important; /* EXPLICIT BLUE HEADER */
+      color: #ffffff;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background-color: #e2e8f0;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background-color: #2563eb;
+      transition: width 0.3s;
+    }
+    .quiz-content {
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .quiz-info-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    .timer-badge {
+      background-color: #fee2e2;
+      color: #dc2626;
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+    }
+    .question-box {
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .question-text {
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      color: #0f172a;
+    }
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 0.9rem;
+      margin-bottom: 0.6rem;
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      color: #334155;
+    }
+    .option-btn.selected {
+      border-color: #2563eb;
+      background-color: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+    .quiz-nav-btns {
+      display: flex;
+      justify-content: space-between;
+    }
+    .btn-prev {
+      padding: 0.7rem 1.5rem;
+      background-color: #e2e8f0;
+      color: #475569;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-next {
+      padding: 0.7rem 1.5rem;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    /* 5. RESULT PAGE STYLING */
+    .result-container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background-color: #1e293b;
+      padding: 2.5rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .result-card {
+      background-color: #0f172a;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .btn-restart {
+      background-color: #ef4444;
+      color: white;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      border-top: 1px solid #1e293b;
+    }
+
